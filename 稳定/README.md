@@ -32,7 +32,7 @@ v1、v2、v3 在本分支的提交历史里。
 
 ```bash
 cd ~/Desktop/重估
-git clone --depth 1 --single-branch --branch output https://github.com/GavinGudz/chonggu-podcast.git 重估成片
+git clone --depth 1 --single-branch --branch output https://github.com/chonggu-podcast/chonggu-podcast.git 重估成片
 cd 重估成片/稳定
 cat 重估_稳定_9比16_v4.mp4.part_* > 重估_稳定_9比16_v4.mp4
 shasum -a 256 -c 重估_稳定_9比16_v4.mp4.sha256

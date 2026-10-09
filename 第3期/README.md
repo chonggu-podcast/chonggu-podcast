@@ -15,7 +15,7 @@
 
 ```bash
 cd ~/Desktop/重估
-git clone --depth 1 --single-branch --branch output https://github.com/GavinGudz/chonggu-podcast.git 重估成片
+git clone --depth 1 --single-branch --branch output https://github.com/chonggu-podcast/chonggu-podcast.git 重估成片
 cd 重估成片/第3期
 cat 重估_3.1_注意力价值_顾东政_3比4.mp4.part_* > 重估_3.1_注意力价值_顾东政_3比4.mp4
 cat 重估_3.2_方向性直觉_吴原同_3比4.mp4.part_* > 重估_3.2_方向性直觉_吴原同_3比4.mp4

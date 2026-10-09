@@ -8,7 +8,7 @@ v4 相对 v3：换上吴原同的新片头（带口播，11.8 秒），口播音
 
 ```bash
 cd ~/Desktop/重估
-git clone --depth 1 --single-branch --branch output https://github.com/GavinGudz/chonggu-podcast.git 成片v4
+git clone --depth 1 --single-branch --branch output https://github.com/chonggu-podcast/chonggu-podcast.git 成片v4
 cd 成片v4/第2期
 cat 重估_第2期_完整版_紧凑_配图_v4.mp4.part_* > 重估_第2期_完整版_紧凑_配图_v4.mp4
 ```
