@@ -15,15 +15,16 @@ scene('在我第一次认识到',
       Hd('？', 340, 872, at='我就开始怀疑', size=80, color='red'))
 
 # B. second doubt: the intern badge fills in
+# [朋友反馈 2026-10-05 更多真实照片] 工牌移到左边，右边是苏州的照片
 scene('那么第二段怀疑',
       K('第 二 段 怀 疑', y=180),
-      Box('', 290, 240, 500, 720),
-      Box('', 480, 272, 120, 22, style='dark', delay=0.4, css={'borderRadius': '11px', 'padding': '0'}),
-      Box('', 420, 336, 240, 260, delay=0.7),
-      Ic('user', 450, 366, size=180, delay=1.0),
-      Tag('实 习 生', 466, 624, at='实习工作', size=30),
-      Hd('博世', 540, 700, at='博世实习', size=120, align='center'),
-      P('苏州', 540, 860, at='苏州博世公司', size=40, align='center', color='gray'))
+      Box('', 60, 240, 440, 680),
+      Box('', 220, 272, 120, 22, style='dark', delay=0.4, css={'borderRadius': '11px', 'padding': '0'}),
+      Box('', 160, 336, 240, 260, delay=0.7),
+      Ic('user', 190, 366, size=180, delay=1.0),
+      Tag('实 习 生', 206, 624, at='实习工作', size=30),
+      Hd('博世', 280, 700, at='博世实习', size=116, align='center'),
+      Photo('suzhou', 540, 300, 480, 400, at='苏州博世公司', cap='苏 州', pos='35% 50%'))
 
 # C1. the department: the team arrives, then its names, then the one red intern at the end of the row
 scene('我是我们这个叫什么',
@@ -33,25 +34,19 @@ scene('我是我们这个叫什么',
       Hd('Logistics Planner', 60, 470, at='LogisticsPlanner', size=76),
       P('Logistics Information Technology', 60, 580, at='LogisticsInformation', size=40),
       Ic('user', 870, 250, size=140, at='唯一的一名实习生', color='red'),
-      Tag('实 习 生', 878, 432, at='唯一的一名实习生', size=28))
+      Tag('实 习 生', 878, 432, at='唯一的一名实习生', size=28),
+      News('bosch', X, 690, 860, at='我是我们这个+1.0', src='界面新闻 · 2023.01.13'))   # [朋友反馈 2026-10-05 新闻截图]
 
-# C2. the years: 2023 → 2026 on a line; only one figure ever stands on it, red, at 2026: 唯一 (实习生, 大一学生)
-scene('他们是23年创立的',
+# C2. 2026 at Bosch: one red figure on the line — 唯一 (大一学生)
+#     [朋友反馈 2026-10-05] 「他们是 23 年创立的……」那句删了：去掉 2023–2025 的刻度，只留 2026
+scene('而且我也是2026年博世里面',
       HL(60, 520, 960, color='ink', thick=4, dur=1.0),
-      {'kind': 'node', 'x': 120, 'y': 522, 'at': '23年创立', 'red': False},
-      P('2023', 120, 548, at='23年创立', size=44, align='center', css=SERIF),
-      P('部门创立', 120, 612, at='23年创立', size=30, align='center', color='gray'),
-      {'kind': 'node', 'x': 400, 'y': 522, 'at': '23年创立', 'delay': 0.25, 'red': False},
-      P('2024', 400, 548, at='23年创立', delay=0.25, size=36, align='center', color='gray'),
-      {'kind': 'node', 'x': 680, 'y': 522, 'at': '23年创立', 'delay': 0.5, 'red': False},
-      P('2025', 680, 548, at='23年创立', delay=0.5, size=36, align='center', color='gray'),
-      {'kind': 'node', 'x': 960, 'y': 522, 'at': '现在是26年了', 'red': True},
-      P('2026', 960, 548, at='现在是26年了', size=44, align='center', color='red', css=SERIF),
-      Ic('user', 880, 340, size=160, at='我是唯一的一个实习生', color='red'),
-      Big('唯一', 60, 250, at='我是唯一的一个实习生', size=200, align='left'),
-      P('实习生', 486, 290, at='我是唯一的一个实习生+0.5', size=52, css=SERIF),
-      P('大一学生', 486, 372, at='唯一的一个大一', size=52, css=SERIF),
-      P('博世 · 2026', 486, 446, at='唯一的一个大一+0.3', size=30, color='gray'))
+      {'kind': 'node', 'x': 960, 'y': 522, 'at': '2026年博世', 'red': True},
+      P('2026', 960, 548, at='2026年博世', size=44, align='center', color='red', css=SERIF),
+      Ic('user', 880, 340, size=160, at='2026年博世', color='red'),
+      Big('唯一', 60, 250, at='唯一的一个大一', size=200, align='left'),
+      P('大一学生', 486, 290, at='唯一的一个大一+0.3', size=52, css=SERIF),
+      P('博世 · 2026', 486, 372, at='唯一的一个大一+0.6', size=30, color='gray'))
 
 # D. not needed (struck) / needed (three drawn icons)
 scene('那么这个工作其实我深入进去',
@@ -95,18 +90,12 @@ scene('当然这不代表大学学的东西',
       Ic('target', 60, 860, size=170, at='在一个岗位上'),
       Hd('在岗位上做好', 260, 890, at='在一个岗位上', size=76))
 
-# G. our classmates: a row of sprouts, each a little taller (祖国的花朵, growing); then 985 · 211
-SPROUTS = [(120, 110), (300, 140), (490, 170), (690, 200), (900, 230)]
-scene('那么就以我们的同学而言好了',
-      Hd('我们的同学', 60, 200, size=100),
-      Ic('people', 860, 196, size=150, at='观众同学'),
-      HL(60, 600, 960, at='未来祖国的花朵', color='light', thick=4),
-      *[Ic('sprout', cx - sz // 2, 600 - int(sz * 0.9), size=sz, at='未来祖国的花朵', delay=i * 0.18)
-        for i, (cx, sz) in enumerate(SPROUTS)],
-      {'kind': 'quote', 'text': '「未来祖国的花朵」', 'x': 60, 'y': 624, 'size': 44, 'at': '未来祖国的花朵+0.6'},
-      Big('985', 60, 716, at='985', size=210, align='left'),
-      Big('211', 540, 716, at='211', size=210, align='left'),
-      P('这种大学的学生', 60, 956, at='这种大学的学生', size=38, color='gray'))
+# G. 985 · 211   [朋友反馈 2026-10-05] 「祖国的花朵」那句删了：去掉豆芽和引语
+scene('比方说985',
+      Photo('gaokao', 60, 200, 960, 470, cap='高 考 考 场', pos='50% 60%'),   # [朋友反馈 2026-10-05 真实照片]
+      Big('985', 60, 760, at='985', size=220, align='left'),
+      Big('211', 540, 760, at='211', size=220, align='left'),
+      P('这种大学的学生', 60, 1010, at='这种大学的学生', size=40, color='gray'))
 
 # H. 千军万马过独木桥: the crowd on one bank, a plank across the gap, one red dot crosses it and stands at the far
 # bridgehead (张飞 at 长坂坡) and asks who dares pass; the crowd fades; 错 lands beside the question.
@@ -116,16 +105,24 @@ scene('那么大多数学生认为',
       {'kind': 'vline', 'x': 345, 'y': 640, 'h': 130, 'delay': 0.8, 'thick': 10},
       HL(730, 640, 290, color='light', thick=10, delay=0.5),
       {'kind': 'vline', 'x': 735, 'y': 640, 'h': 130, 'delay': 0.9, 'thick': 10},
-      Crowd(60, 470, 270, 300, n=40, cols=8, r=8, at='这么优秀的学生', pick_at='没有人竞争过我'),
+      Crowd(60, 470, 270, 300, n=40, cols=8, r=8, at='这么优秀的学生', pick_at='张飞'),
       P('千军万马', 195, 670, at='千军万马', size=34, align='center', color='gray'),
       Ruler(350, 600, w=380, ticks=1, minor=0, at='千军万马+0.4',
             labels=[{'pos': 0.5, 'text': '独木桥', 'at': '独木桥', 'size': 34}],
             dot={'from': 0.0, 'to': 1.0, 'at': '杀过独木桥', 'slide_at': '独木桥', 'dur': 1.2, 'ghost': False}),
       P('张飞', 730, 545, at='张飞+0.4', size=40, align='center', color='red', css=SERIF),
-      P('长坂坡', 875, 670, at='长坂坡', size=34, align='center', color='gray'),
-      Bub('谁敢通过\n我的路？', 690, 330, at='谁敢通过我的路'),
-      Stamp('错', 440, 320, at='错', size=110, rot=-8),
-      Hd('要的是能力', 60, 820, at='人家要的是你有能力', size=104, color='red'))
+      News('gaokao', 210, 800, 660, at='千军万马', src='新华网 · 2026.06.03'))   # [朋友反馈 2026-10-05 新闻截图]
+
+# [朋友反馈 2026-10-05 更多真实照片] 「长坂坡」拆成单独一场：月冈芳年的《张飞长坂桥》
+scene('我一个人站在长坂坡',
+      Photo('zhangfei', X, 240, 960, 520, cap='张 飞 · 长 坂 桥', pos='50% 35%', zoom=0.06),
+      Bub('谁敢通过\n我的路？', 600, 860, at='谁敢通过我的路'),
+      P('「没有人竞争过我」', X, 900, at='没有人竞争过我', size=44, css=SERIF))
+
+scene('那么答案是什么呢',
+      K('答 案 是 什 么 呢', y=200),
+      Stamp('错', 540, 280, at='错', size=220, rot=-8, align='center'),
+      Hd('人家要的是\n你有能力', X, 620, at='人家要的是你有能力', size=110, color='red'))
 
 # J. ch01's résumé again. What you want: they see the 学历 line (a faint eye). What they want: a new line, 能否胜任,
 # filled red, and the boss's eye (red) is on it. Then the cost on their side: a balance, 钱 ＋ 教你 ＝ 成本.

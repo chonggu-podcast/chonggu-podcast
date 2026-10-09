@@ -18,7 +18,8 @@ scene('然后到了后来我去马来西亚',
       Lab('大学预科', 540, 500, at='大学预科', align='center', color='red', size=46),
       Node(940, 600, at='上大学前'),
       Lab('大学', 940, 640, at='上大学前', align='center', size=38),
-      Lab('衔 接', 540, 640, at='衔接课程', align='center', size=30, color='gray'))
+      Lab('衔 接', 540, 640, at='衔接课程', align='center', size=30, color='gray'),
+      Photo('kl', X, 720, 960, 360, at='马来西亚+0.8', cap='马 来 西 亚 · 吉 隆 坡', pos='50% 70%'))   # [朋友反馈 2026-10-05 真实照片]
 
 # B. a score, redacted: 成绩 -> 隐私
 scene('在那里我第一次遇到',
@@ -29,17 +30,17 @@ scene('在那里我第一次遇到',
       Big('隐私', 540, 452, at='原来它是隐私', size=250))
 
 # C. the corridor board of ch 09 comes back already filled (the same board), then goes private: blur + lock
-scene('当时我还在国内高中的时候',
-      K('那 时 ， 国 内 高 中 的 走 廊', y=200),
+#   [朋友反馈 2026-10-05] 「当时我还在国内高中……」那句删了：场景从「成绩不会被挂在走廊上」开始
+scene('成绩不会被挂在走廊上',
+      K('国 内 高 中 的 走 廊', y=200),
       Board(X, 262, 960, title='成绩榜', subtitle='走 廊', stagger=0.01,
             rows=[{'rank': '1', 'score': '98', 'hot': True},
                   {'rank': '2', 'score': '95'},
                   {'rank': '3', 'score': '93'},
                   {'rank': '4', 'score': '90'},
                   {'rank': '5', 'score': '88'}],
-            blur_at='成绩不会被挂在走廊上'),
-      Bub('絮絮叨叨', 716, 166, at='絮絮叨叨'),
-      Tag('马 来 西 亚', X, 806, at='成绩不会被挂在走廊上', size=30),
+            blur_at='挂在走廊上+0.5'),
+      Tag('马 来 西 亚', X, 806, at='挂在走廊上+0.5', size=30),
       P('分数，只有你自己知道', X, 866, at='你考多少', size=44))
 
 # D. besides study: projects, podcasts, sport -> an outsized application result
@@ -71,8 +72,7 @@ scene('就像是我认识一个朋友',
       Lab('全 校', X, 420, at='但是他真的+0.4', size=34, color='gray'),
       Big('1', 290, 400, at='唯一一个', size=500),
       Arr(470, 690, 150, at='进了哈佛'),
-      Ic('school', 660, 560, 210, at='进了哈佛'),
-      Lab('哈佛', 765, 790, at='进了哈佛+0.3', align='center', size=44, css={'fontWeight': '900'}))
+      Photo('harvard', 640, 540, 380, 300, at='进了哈佛', cap='哈 佛', pos='45% 50%'))   # [朋友反馈 2026-10-05 真实照片] 照片代替学校图标
 
 # F. not one ruler, but only a new ruler: 分数 -> 世界排名, and the QS searches
 scene('然后我当时就意识到',

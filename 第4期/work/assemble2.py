@@ -9,6 +9,10 @@ What changed against assemble.py (which inserted digital silence between every s
   * A splice keeps the natural pause around it: up to 0.35 s after the last kept word and up to 0.5 s before the next
     one (the in-breath lives there), bounded by the removed words so none of them leaks in; equal-power crossfade.
   * Pauses longer than 0.9 s inside a take are shortened to about 0.65 s, keeping the breath before the next onset.
+  * [2026-10-05, 朋友反馈「话与话链接有问题」] Every splice is measured: the non-speech run (pause + breath) at the end of
+    what is already laid down plus the one at the head of the next take. If it is shorter than a natural pause it is
+    padded with gated silence (the mix lays room tone under it): 0.5 s after 。？！, 0.3 s after a comma, 0.12 s inside
+    a sentence. Splices inside a sentence get a 35 ms fade instead of 20 ms. A report goes to out_dir/joins.json.
   * Character times come from one whisper pass over the finished audio, aligned piece by piece (fallback: whisper on
     the piece alone), so subtitles follow the audio that is actually heard.
 """
@@ -130,6 +134,28 @@ def eqp_join(out, x, fade):
     return f
 
 
+END_STOP = set('。？！?!…」』"')
+GAP_MIN = {'stop': 0.50, 'comma': 0.30, 'inner': 0.12}
+
+
+def ns_run(x, from_end):
+    """Length (s) of the non-speech run (below SPEECH: pause, breath) at the end / head of x."""
+    n = len(x) // HOP
+    if n <= 0:
+        return 0.0
+    fr = x[len(x) - n * HOP:] if from_end else x[:n * HOP]
+    d = 20 * np.log10(np.sqrt((fr.reshape(n, HOP) ** 2).mean(1)) + 1e-9)
+    if from_end:
+        d = d[::-1]
+    k = 0
+    while k < n and d[k] < SPEECH:
+        k += 1
+    return k / 100
+
+
+JOINS = []
+
+
 def build(pieces, lead, between=None):
     """pieces -> (audio, rows). between(prev_piece, piece) -> extra silence (s) at a splice, or None."""
     # 1. flatten to intervals and group into continuous takes
@@ -160,15 +186,33 @@ def build(pieces, lead, between=None):
             extra = between(pieces[takes[ti - 1]['items'][-1]['pi']], pieces[first['pi']])
             if extra:
                 out.append(np.zeros(int(extra * SR), np.float32)); t_out += extra
-        for (ca, cb) in shorten_pauses(a, b):
+        for ci_, (ca, cb) in enumerate(shorten_pauses(a, b)):
             x = SRC[int(ca * SR):int(cb * SR)].copy() * GAIN[T['spk']]
             inner = first['inner_l'] or (ti and takes[ti - 1]['items'][-1]['inner_r'])
-            fade = 0.02 if inner else 0.05
+            fade = 0.035 if inner else 0.05
             if len(out) == 1:   # first chunk after the lead: fade in
                 f = int(0.03 * SR); x[:f] *= np.linspace(0, 1, f)
                 out.append(x); ov = 0
             else:
-                ov = eqp_join(out, x, fade)
+                if ci_ == 0 and ti:   # a splice: make sure a natural pause is heard
+                    prev_txt = pieces[takes[ti - 1]['items'][-1]['pi']]['text'].rstrip()
+                    kind = 'inner' if inner else ('stop' if prev_txt[-1:] in END_STOP else 'comma')
+                    tail = ns_run(np.concatenate(out[-3:])[-int(1.5 * SR):], True)
+                    head = ns_run(x[:int(1.5 * SR)], False)
+                    gap = tail + head - fade
+                    pad = max(0.0, GAP_MIN[kind] - gap)
+                    JOINS.append({'at': round(t_out, 2), 'kind': kind, 'gap_before': round(gap, 2), 'pad': round(pad, 2),
+                                  'prev': prev_txt[-12:], 'next': pieces[first['pi']]['text'][:12]})
+                    if pad > 0:
+                        f = int(0.015 * SR)
+                        out[-1][-f:] *= np.linspace(1, 0, f, dtype=np.float32)
+                        x[:f] *= np.linspace(0, 1, f, dtype=np.float32)
+                        out.append(np.zeros(int(pad * SR), np.float32)); t_out += pad
+                        out.append(x); ov = 0
+                    else:
+                        ov = eqp_join(out, x, fade)
+                else:
+                    ov = eqp_join(out, x, fade)
             segmap.append((ca, cb, t_out - ov / SR))
             t_out += (len(x) - ov) / SR
     y = np.concatenate(out)
@@ -190,11 +234,16 @@ def build(pieces, lead, between=None):
         rows.append({**{k: v for k, v in p.items() if k != 'parts'}, 'cut': [round(float(parts[0][0]), 3), round(float(parts[-1][1]), 3)],
                      't0': round(to_out(float(parts[0][0])), 3), 't1': round(to_out(float(parts[-1][1])), 3),
                      '_parts': [[round(to_out(float(a)), 3), round(to_out(float(b)), 3)] for a, b in parts]})
-    return y, rows, takes
+    return y, rows, takes, to_out
 
 
 # ---------------------------------------------------------------- character times from the finished audio
-import mlx_whisper
+# ALIGN=map (2026-10-05, on the Air): no second whisper pass. The source transcript.json already holds large-v3 word
+# times; each word inside a kept part is carried through the edit with to_out(), so the times follow the audio exactly.
+import os
+ALIGN = os.environ.get('ALIGN', 'asr')
+if ALIGN == 'asr':
+    import mlx_whisper
 PUNCT = set('，。？！、；：,.?!;:“”"‘’（）() …—-《》')
 EQ = str.maketrans('他她得地裡後個們這為說過來時間錢會麼經學實東', '它它的的里后个们这为说过来时间钱会么经学实东')
 PROMPT = '普通话播客《重估》，重估学历。敲门砖，实习，博世，职高，国企央企，安全感，马来西亚，大学预科，UNSW，祛魅，复利，贬值，外部评价，Codex，Claude Code，AI。'
@@ -260,7 +309,34 @@ def voiced_edges(y, t0, t1):
     return (t0 + v[0] / 100, t0 + (v[-1] + 1) / 100) if len(v) else (t0, t1)
 
 
-def time_rows(y, rows, label):
+def mapped_words(p, to_out):
+    """Source-transcript characters of piece p, placed on the output timeline."""
+    got = []
+    for a, b in (p.get('parts') or [p['src']]):
+        for ws, we, w in WORDS:
+            if not (a - 0.04 <= (ws + we) / 2 <= b + 0.04):
+                continue
+            cs = [c for c in w if c not in PUNCT and not c.isspace()]
+            if not cs:
+                continue
+            d = (we - ws) / len(cs)
+            for k, c in enumerate(cs):
+                got.append((c.lower().translate(EQ), to_out(ws + k * d), to_out(ws + (k + 1) * d)))
+    return got
+
+
+def time_rows(y, rows, label, pieces=None, to_out=None):
+    if ALIGN == 'map':
+        low = []
+        for r, p in zip(rows, pieces):
+            ve = voiced_edges(y, r['t0'], r['t1'])
+            times, q = align(r['text'], mapped_words(p, to_out), r['t0'], r['t1'], ve)
+            r['char_t'] = times
+            r['match'] = round(q, 2)
+            if q < 0.6:
+                low.append((round(q, 2), r['text'][:30]))
+        print(f'{label}: {len(rows)} rows (mapped), {len(low)} below 0.6', low[:8], flush=True)
+        return
     got = asr_words(y)
     low = []
     for r in rows:
@@ -288,9 +364,9 @@ pieces = []
 for ch in edl['chapters']:
     for k, p in enumerate(ch['pieces']):
         pieces.append({**p, 'chapter': ch['no'], 'chapter_start': k == 0 and ch['no'] != edl['chapters'][0]['no']})
-body, rows, takes = build(pieces, lead=0.25, between=lambda a, b: 0.35 if a['spk'] != b['spk'] else 0)
+body, rows, takes, body_to_out = build(pieces, lead=0.25, between=lambda a, b: 0.35 if a['spk'] != b['spk'] else 0)
 print(f'{len(pieces)} pieces -> {len(takes)} continuous takes; body {len(body) / SR:.2f} s', flush=True)
-time_rows(body, rows, 'body')
+time_rows(body, rows, 'body', pieces, body_to_out)
 SPL = []
 for i in range(1, len(takes)):
     A_, B_ = takes[i - 1]['items'][-1], takes[i]['items'][0]
@@ -298,12 +374,15 @@ for i in range(1, len(takes)):
     SPL.append({'src_end': round(A_['b'], 2), 'src_next': round(B_['a'], 2), 'removed': rem,
                 'out_at': rows[B_['pi']]['t0'], 'inner': A_['inner_r']})
 json.dump(SPL, open(OUT / 'splices.json', 'w'), ensure_ascii=False, indent=1)
+json.dump(JOINS, open(OUT / 'joins.json', 'w'), ensure_ascii=False, indent=1)
+_pd = [j for j in JOINS if j['pad'] > 0]
+print(f'joins: {len(JOINS)} splices, {len(_pd)} padded (total {sum(j["pad"] for j in _pd):.1f} s)', flush=True)
 wavfile.write(OUT / 'body.wav', SR, body.astype(np.float32))
 
 co_rows = []
 if edl.get('cold_open'):
-    cold, co_rows, _ = build(edl['cold_open'], lead=0.7, between=lambda a, b: 1.0)
-    time_rows(cold, co_rows, 'cold open')
+    cold, co_rows, _, cold_to_out = build(edl['cold_open'], lead=0.7, between=lambda a, b: 1.0)
+    time_rows(cold, co_rows, 'cold open', edl['cold_open'], cold_to_out)
     wavfile.write(OUT / 'cold.wav', SR, cold.astype(np.float32))
     print(f'cold open {len(cold) / SR:.2f} s', flush=True)
 

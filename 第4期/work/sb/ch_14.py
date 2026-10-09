@@ -85,8 +85,8 @@ scene('当然我还有一个判断',
       P('AI 写的', 830, 458, at='AI写的东西', size=36, align='center'),
       Big('=', 540, 262, at='再也检测不出来', size=170),
       Hd('学校考人的方式，\n就得改了', y=556, at='学校考人的方式', size=96),
-      {'kind': 'quote', 'text': '「已经完全分辨不出来了。」', 'x': X, 'y': 830, 'size': 46, 'at': '我们自己写的代码'},
-      {'kind': 'src', 'text': '—— lecture 上，老师说', 'x': X, 'y': 906, 'size': 28, 'at': '那个lecture老师说'})
+      News('abc', 210, 810, 600, at='再也检测不出来+0.4', src='ABC新闻（澳大利亚） · 2025.10.20'),   # [朋友反馈 2026-10-05 新闻截图]
+      )   # [朋友反馈 2026-10-05] lecture 老师那句（和第 11 章重复）删了，引语一起去掉
 
 # 14g  how much will a ranking still weigh?
 scene('到了那天',

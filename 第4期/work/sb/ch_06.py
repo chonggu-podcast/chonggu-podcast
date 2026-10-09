@@ -37,8 +37,8 @@ scene('还有一件事情我觉得很有意思',
       K('还 有 一 件 事', X, 200),
       Ic('user', 60, 280, size=260, sw=3),
       P('顾东政', 190, 560, size=36, align='center'),
-      Ic('user', 760, 280, size=260, sw=3, at='身处于当下'),
-      P('吴原同', 890, 560, at='身处于当下', size=36, align='center'),
+      Ic('user', 760, 280, size=260, sw=3, at='很有意思'),
+      P('吴原同', 890, 560, at='很有意思', size=36, align='center'),
       Ic('cap', 405, 270, size=270, sw=3, at='大学最重要是', dur=1.4),
       g4_vl(190, 626, 64, at='我和吴老师为例', color='red', thick=5),
       g4_vl(890, 626, 64, at='我和吴老师为例', color='red', thick=5),
@@ -66,27 +66,28 @@ scene('谈恋爱交对象',
 
 # 3. two lanes: 宁波 / 杭州, 美国 / 马来西亚 — they meet at UNSW ------------------------------------------------------ 20 s
 L_, R_ = 270, 810
+# [朋友反馈 2026-10-05 真实照片] 拆成两场：先是两座城市的照片，再是两条路汇到 UNSW 的校园照片
 scene('那么大家想我和吴老师',
       P('顾东政', L_, 180, size=36, align='center'),
       P('吴原同', R_, 180, size=36, align='center'),
-      Big('≠', 540, 352, at='不一样的城市', size=96, color='gray'),
-      Big('≠', 540, 580, at='不一样的高中', size=80, color='gray'),
-      g4_vl(R_, 236, 96, at='他住在杭州', color='ink'),
-      g4_node(R_, 350, at='他住在杭州', delay=0.5),
-      Hd('杭州', R_, 374, at='他住在杭州', size=72, align='center'),
-      g4_vl(L_, 236, 96, at='我住在宁波', color='ink'),
-      g4_node(L_, 350, at='我住在宁波', delay=0.5),
-      Hd('宁波', L_, 374, at='我住在宁波', size=72, align='center'),
-      g4_vl(R_, 474, 86, at='马来西亚', color='ink'),
-      g4_node(R_, 578, at='马来西亚', delay=0.5),
-      Hd('马来西亚 · 高中', R_, 602, at='马来西亚', size=50, align='center'),
-      g4_vl(L_, 474, 86, at='我在美国上过高中', color='ink'),
-      g4_node(L_, 578, at='我在美国上过高中', delay=0.5),
-      Hd('美国 · 高中', L_, 602, at='我在美国上过高中', size=50, align='center'),
-      g4_line(L_, 690, 304, 27.4, at='这一所UNSW', thick=4),
-      g4_line(R_, 690, 304, 152.6, at='这一所UNSW', thick=4),
-      Box('UNSW', 350, 830, 380, 124, at='这一所UNSW', style='pink', tsize=72, center=True, delay=0.5),
-      Bub('想聊到一块', 400, 1000, at='彼此有什么东西', tail='up'))
+      Photo('ningbo', 60, 250, 440, 330, at='我住在宁波', cap='宁 波', pos='60% 60%'),
+      Photo('hangzhou', 580, 250, 440, 330, at='他住在杭州', cap='杭 州'),
+      Big('≠', 540, 330, at='不一样的城市', size=96, color='gray'))
+
+scene('他之前在马来西亚',
+      P('顾东政', L_, 180, size=36, align='center'),
+      P('吴原同', R_, 180, size=36, align='center'),
+      Big('≠', 540, 236, size=80, color='gray'),
+      g4_vl(R_, 236, 40, at='马来西亚', color='ink'),
+      g4_node(R_, 290, at='马来西亚', delay=0.4),
+      Hd('马来西亚 · 高中', R_, 312, at='马来西亚', size=46, align='center'),
+      g4_vl(L_, 236, 40, at='我在美国上过高中', color='ink'),
+      g4_node(L_, 290, at='我在美国上过高中', delay=0.4),
+      Hd('美国 · 高中', L_, 312, at='我在美国上过高中', size=46, align='center'),
+      g4_line(L_, 390, 304, 27.4, at='这一所UNSW', thick=4),
+      g4_line(R_, 390, 304, 152.6, at='这一所UNSW', thick=4),
+      Photo('unsw_lawn', 190, 540, 700, 400, at='这一所UNSW+0.3', cap='U N S W', pos='50% 45%'),
+      Bub('想聊到一块', 640, 1010, at='彼此有什么东西', tail='up'))
 
 # 4. 相遇 cannot be measured by a salary ---------------------------------------------------------------------- 11.6 s
 scene('这份相遇呢',
@@ -169,12 +170,7 @@ scene('大学可以让我们直接接触到',
       Bub('一起尝试', 250, 370, at='一起尝试'),
       Hd('一个很好的平台', 540, 790, at='所以大学就是', size=84, align='center'))
 
-# 9. 「我很幸运」 ---------------------------------------------------------------------------------------------- 6.7 s
-scene('我很幸运我能遇见吴老师',
-      {'kind': 'quote', 'text': '「我很幸运，\n能遇见吴老师。」', 'x': X, 'y': 300, 'size': 84, 'at': None},
-      Rule(X, 560, 200, at='我很幸运+0.8'),
-      P('不然，不知道什么时候\n才遇见这样的人', X, 600, at='如果不是吴老师', size=40, color='gray'),
-      Ic('clock', 500, 604, size=96, sw=5, at='以后什么时候', color='red'))
+# 9. 「我很幸运」  [朋友反馈 2026-10-05] 这句和「平行宇宙」重复，删了
 
 # 10. outside school: circles of other people -------------------------------------------------------------- 14.3 s
 scene('而且不光是学校好了',

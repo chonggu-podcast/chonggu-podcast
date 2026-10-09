@@ -21,7 +21,7 @@ scene('刚刚顾老师说得特别好',
 # 2. two years of AI chats, searched for 排名 / 学历: the same question again and again (a bracket spans
 #    去年上半年 .. 去年下半年), then the real one in red.  Chat rows: top = 380 + 98.4 i (size 36, gap 16).
 _r = lambda i: 380 + 98.4 * i + 41
-scene('我把我这两年',
+scene('其实在录这些之前',   # [2026-10-05] 从这句开头起：4.2 单独成片时片头之后不留空白
       Chat(X, 210, w=CW, title='和 AI 的聊天记录 · 近两年', size=36, gap=16,
            search={'text': '排名　学历', 'at': '我去搜', 'cps': 5},
            msgs=[{'who': 'me', 'text': 'UNSW 世界排名多少？', 'at': '从去年上半年'},

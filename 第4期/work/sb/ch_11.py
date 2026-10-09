@@ -16,16 +16,20 @@ def QM(x, y, at=None, **kw):
 
 
 # A. UNSW, computer science, met 顾老师; July last year he asked AI one question
+# [朋友反馈 2026-10-05 真实照片] 拆出一场：去了 UNSW（校园照片），遇到顾老师
 scene('然后呢再后来我就去了',
       K('U N S W · 计 算 机', y=200),
-      Ic('user', 60, 246, 110),
-      P('我', 115, 362, size=30, align='center'),
-      Ic('user', 200, 246, 110, at='遇到了顾老师'),
-      Lab('顾老师', 255, 366, at='遇到了顾老师', size=30, align='center'),
-      Chat(X, 440, 960, at='去年7月份', size=40,
+      Photo('unsw_walk', X, 260, 960, 520, at='UNSW', cap='U N S W', pos='50% 55%'),
+      Ic('user', 60, 880, 110),
+      P('我', 115, 996, size=30, align='center'),
+      Ic('user', 200, 880, 110, at='遇到了顾老师'),
+      Lab('顾老师', 255, 1000, at='遇到了顾老师', size=30, align='center'))
+
+scene('其实在去年7月份',
+      Chat(X, 260, 960, at='去年7月份', size=40,
            msgs=[{'who': 'me', 'text': '单纯写代码有用吗？', 'at': '单纯写代码有用吗', 'date': '去年 7 月'},
                  {'who': 'me', 'text': '我真正需要学的是什么？', 'at': '我真正需要学的是什么'}]),
-      QM(800, 150, at='还没想明白', size=320))
+      QM(780, 660, at='还没想明白', size=320))
 
 # B. first term: Codex, Claude Code -- then still a small helper beside a person
 scene('我接触到了AI',
@@ -34,7 +38,9 @@ scene('我接触到了AI',
       Ic('robot', 490, 452, 128, at='接触到了AI+0.3'),
       Lab('Codex', 638, 458, at='接触到了Codex', size=40),
       Lab('Claude Code', 638, 512, at='ClaudeCode', size=40),
-      Lab('只是一种工具', 494, 610, at='它只是一种', size=38, color='gray'))
+      Lab('只是一种工具', 494, 610, at='它只是一种', size=38, color='gray'),
+      News('codex', X, 690, 470, at='接触到了Codex', src='TechCrunch · 2025.05.16'),   # [朋友反馈 2026-10-05 新闻截图]
+      News('claudecode', 550, 690, 470, at='ClaudeCode', src='TechCrunch · 2025.10.20'))
 
 # C. the exam page: no multiple choice, no blanks, only code that must pass tests -- and AI runs the tests itself
 scene('我们的考试没有选择题',
@@ -93,13 +99,16 @@ scene('我们现在已经无法分辨',
       P('AI 写的？', 820, 778, at='还是AI写的', size=40, align='center'))
 
 # F. replacement, in his own field: the robot now big, the person small (mirror of B)
+# [朋友反馈 2026-10-05 新闻截图] 画面收紧，下面放斯坦福的研究（论文摘要里的结论）
 scene('然后当时我就开始意识到',
-      Ic('user', 200, 450, 150),
-      Lab('人', 275, 610, size=36, align='center'),
-      Arr(352, 516, 220, at='对人的替代'),
-      Ic('robot', 540, 240, 360, at='对人的替代+0.3', color='red', dur=1.1),
-      Lab('AI', 720, 610, size=36, align='center', color='red', at='对人的替代+0.8'),
-      Tag('就 在 我 学 的 这 一 行', 290, 700, at='就在我自己学的这一行', size=30))
+      Ic('user', 160, 330, 150),
+      Lab('人', 235, 490, size=36, align='center'),
+      Arr(312, 396, 200, at='对人的替代'),
+      Ic('robot', 540, 200, 300, at='对人的替代+0.3', color='red', dur=1.1),
+      Lab('AI', 690, 500, size=36, align='center', color='red', at='对人的替代+0.8'),
+      Tag('就 在 我 学 的 这 一 行', 160, 570, at='就在我自己学的这一行', size=30),
+      News('stanford', X, 660, 400, at='就在我自己学的这一行+0.6', src='斯坦福SIEPR · 2025'),
+      P('22–25 岁的年轻人，\n在最受 AI 影响的岗位上，\n就业相对下降 13%', 500, 760, at='就在我自己学的这一行+1.0', size=38, css={'lineHeight': '1.5'}))
 
 # G. his judgement: this field now (a full row of people) -> within a year or two (a few, the rest empty places)
 scene('就是我自己的判断',

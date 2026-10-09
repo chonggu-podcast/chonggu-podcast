@@ -10,6 +10,7 @@ import numpy as np
 from scipy.io import wavfile
 
 sys.path.insert(0, str(Path.home() / 'Documents/Codex/2026-09-28/wu-du/chonggu_intro'))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'extras' / 'chonggu_intro'))   # Air: the copy in this folder
 import music as mu  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
@@ -55,6 +56,7 @@ tmp = out.with_suffix('.v.wav')
 wavfile.write(tmp, SR, np.stack([v, v], 1).astype(np.float32))   # measure as the final stereo (mono counts 3 dB lower)
 g = -14.0 - lufs(tmp)
 v *= db(g)
+v_voice = v.copy()               # the mastered voice alone: the music cues duck under it
 # room tone: Tencent Meeting's noise gate leaves digital silence between phrases, which reads as drop-outs.
 # A very quiet, band-limited noise bed (about -64 dBFS after mastering) under the cold open and the body keeps the air.
 rng = np.random.default_rng(7)
@@ -76,6 +78,16 @@ subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(INTRO), '-vn', '-ac', '
 intro = wavfile.read(ia)[1].astype(np.float64)
 ia.unlink()
 y = np.stack([v, v], 1)
+# [2026-10-05 朋友反馈「开头要有音效，说到重点要有音乐元素」] cold-open hit/drone/riser, chapter page-turns, key-line music
+if os.environ.get('FX', '1') != '0':
+    import score_fx
+    _src = (HERE.parent / 'render' / os.environ.get('EP_JS', 'ep_final.js')).read_text()
+    EP = json.loads(_src[_src.index('{'):_src.rindex('}') + 1])
+    fx, cues = score_fx.build(n, T, EP, v_voice)
+    y += fx
+    json.dump([{'what': c[0], 't0': round(c[1], 2), 't1': round(c[2], 2)} for c in cues],
+              open(ED / 'music_cues.json', 'w'), ensure_ascii=False, indent=1)
+    print(f'music/fx: {len(cues)} cues', flush=True)
 k = int(round(Tco * SR))
 m = min(len(intro), n - k)
 y[k:k + m] += intro[:m]

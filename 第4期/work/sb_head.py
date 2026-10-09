@@ -123,3 +123,30 @@ def Marker(text, x, y, at=None, **kw):           # size, band='pink'|'red'
 
 def Swap(frm, to, x, y, at=None, **kw):          # strike_at, to_at, size
     return {'kind': 'swap', 'from': frm, 'to': to, 'x': x, 'y': y, 'at': at, **kw}
+
+
+# ---------------------------------------------------------------- real photos (朋友反馈 2026-10-05「没有真实的照片呈现」)
+# Wikimedia Commons, see render/photos/ep4_credits.json; CC BY-SA needs the author and licence next to the picture.
+_CRED = json.load(open(HERE.parent / 'render' / 'photos' / 'ep4_credits.json'))
+
+
+def Photo(key, x, y, w, h, at=None, cap=None, **kw):
+    c = _CRED[f'ep4_{key}.jpg']
+    who = c['artist'].replace('User:', '').replace(' at English Wikipedia', '')
+    lic = '公共领域' if c['license'].lower().startswith('public domain') else c['license']
+    return {'kind': 'photo', 'src': f'photos/ep4_{key}.jpg', 'x': x, 'y': y, 'w': w, 'h': h, 'at': at, 'cap': cap,
+            'cred': f'图：{who} · {lic} · Wikimedia Commons' if w >= 600 else f'图：{who}\n{lic} · Wikimedia Commons',
+            'zoom': kw.pop('zoom', 0.04), 'kb': kw.pop('kb', 10), **kw}
+
+
+# ---------------------------------------------------------------- real news screenshots (朋友反馈 2026-10-05「要真实的新闻截图」)
+# render/news/<key>.png: the outlet's header, headline and date, cropped from the real page (render/news_shot.mjs); nothing
+# else is changed. The source and date go under the picture.
+import struct
+
+
+def News(key, x, y, w, at=None, src='', **kw):
+    with open(HERE.parent / 'render' / 'news' / f'{key}.png', 'rb') as f:
+        pw, ph = struct.unpack('>II', f.read(24)[16:24])
+    return {'kind': 'photo', 'src': f'news/{key}.png', 'x': x, 'y': y, 'w': w, 'h': round(w * ph / pw), 'at': at,
+            'cap': src, 'cred': '新闻截图', 'zoom': 0, 'kb': 10, **kw}

@@ -1,0 +1,212 @@
+[
+ {
+  "src_end": 901.64,
+  "src_next": 903.26,
+  "removed": "我过去的两年我把",
+  "out_at": 0.25,
+  "inner": true
+ },
+ {
+  "src_end": 909.36,
+  "src_next": 911.8,
+  "removed": "从去年到去年",
+  "out_at": 9.895,
+  "inner": false
+ },
+ {
+  "src_end": 965.52,
+  "src_next": 967.34,
+  "removed": "学习特别好的人会被",
+  "out_at": 63.765,
+  "inner": false
+ },
+ {
+  "src_end": 1004.08,
+  "src_next": 1005.14,
+  "removed": "那清楚",
+  "out_at": 101.185,
+  "inner": false
+ },
+ {
+  "src_end": 1018.5,
+  "src_next": 1019.7,
+  "removed": "我读的是当时吧",
+  "out_at": 114.895,
+  "inner": false
+ },
+ {
+  "src_end": 1028.44,
+  "src_next": 1037.0,
+  "removed": "当时我还在国内高中的时候在高中那种走廊上大家还试着找到成绩当时还有点不好意思呢",
+  "out_at": 124.175,
+  "inner": false
+ },
+ {
+  "src_end": 1082.32,
+  "src_next": 1086.52,
+  "removed": "虽然我知道后面是虽然后面也知道这种东西都是放屁了",
+  "out_at": 169.945,
+  "inner": false
+ },
+ {
+  "src_end": 1102.92,
+  "src_next": 1104.3,
+  "removed": "就是那种会",
+  "out_at": 181.785,
+  "inner": true
+ },
+ {
+  "src_end": 1126.06,
+  "src_next": 1127.68,
+  "removed": "于是",
+  "out_at": 208.94,
+  "inner": false
+ },
+ {
+  "src_end": 1140.28,
+  "src_next": 1143.3,
+  "removed": "你们你们就是AI写的代码",
+  "out_at": 219.02,
+  "inner": true
+ },
+ {
+  "src_end": 1146.52,
+  "src_next": 1148.12,
+  "removed": "然后他确实很厉害",
+  "out_at": 225.435,
+  "inner": false
+ },
+ {
+  "src_end": 1162.32,
+  "src_next": 1165.12,
+  "removed": "当然这不只是我的看法就毕竟对",
+  "out_at": 240.175,
+  "inner": false
+ },
+ {
+  "src_end": 1183.32,
+  "src_next": 1183.62,
+  "removed": "资源",
+  "out_at": 258.725,
+  "inner": false
+ },
+ {
+  "src_end": 1265.98,
+  "src_next": 1266.3,
+  "removed": "不",
+  "out_at": 337.585,
+  "inner": true
+ },
+ {
+  "src_end": 1276.04,
+  "src_next": 1276.46,
+  "removed": "一段",
+  "out_at": 347.93,
+  "inner": true
+ },
+ {
+  "src_end": 1278.22,
+  "src_next": 1279.88,
+  "removed": "在那里就是",
+  "out_at": 352.985,
+  "inner": false
+ },
+ {
+  "src_end": 1283.16,
+  "src_next": 1284.62,
+  "removed": "就是",
+  "out_at": 352.985,
+  "inner": true
+ },
+ {
+  "src_end": 1294.88,
+  "src_next": 1298.3,
+  "removed": "大概就前段时间出了一个快速选择工具",
+  "out_at": 366.94,
+  "inner": false
+ },
+ {
+  "src_end": 1313.84,
+  "src_next": 1314.76,
+  "removed": "然后给你算卦",
+  "out_at": 382.83,
+  "inner": false
+ },
+ {
+  "src_end": 1341.76,
+  "src_next": 1345.78,
+  "removed": "能让你在还没有那种在外部评价的时候",
+  "out_at": 409.74,
+  "inner": false
+ },
+ {
+  "src_end": 1356.84,
+  "src_next": 1357.22,
+  "removed": "拿到",
+  "out_at": 420.06,
+  "inner": true
+ },
+ {
+  "src_end": 1360.6,
+  "src_next": 1364.6,
+  "removed": "它就像是一个泡它就像是吹你人生泡沫的第一锤",
+  "out_at": 424.865,
+  "inner": false
+ },
+ {
+  "src_end": 1370.34,
+  "src_next": 1370.66,
+  "removed": "回不了",
+  "out_at": 430.105,
+  "inner": true
+ },
+ {
+  "src_end": 1373.96,
+  "src_next": 1374.64,
+  "removed": "还有",
+  "out_at": 430.105,
+  "inner": true
+ },
+ {
+  "src_end": 1381.76,
+  "src_next": 1382.56,
+  "removed": "",
+  "out_at": 437.055,
+  "inner": true
+ },
+ {
+  "src_end": 1383.76,
+  "src_next": 1385.72,
+  "removed": "在那里提到我们提到AN是工具",
+  "out_at": 437.055,
+  "inner": true
+ },
+ {
+  "src_end": 1397.52,
+  "src_next": 1402.82,
+  "removed": "就比如说我刚才还提到那个Latron老师说我们自己写的代码它已经完全分辨不出来了",
+  "out_at": 455.005,
+  "inner": false
+ },
+ {
+  "src_end": 1427.78,
+  "src_next": 1428.14,
+  "removed": "问话",
+  "out_at": 473.445,
+  "inner": true
+ },
+ {
+  "src_end": 1437.06,
+  "src_next": 1437.36,
+  "removed": "在",
+  "out_at": 483.58,
+  "inner": true
+ },
+ {
+  "src_end": 1441.42,
+  "src_next": 1441.82,
+  "removed": "我们",
+  "out_at": 483.58,
+  "inner": true
+ }
+]

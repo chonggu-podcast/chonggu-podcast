@@ -36,7 +36,8 @@ scene('那么我们这档节目',
       P('观众朋友们', 380, RY + 36, at='观众朋友们', size=30, color='gray', align='center'),
       Hd('踏上这一条\n不确定性的道路', X, 360, at='和我们踏上', size=96),
       *[HL(712 + 46 * k, RY, 26, at='不确定性的道路', thick=5, delay=0.08 * k) for k in range(5)],
-      Big('?', 975, RY - 100, at='不确定性的道路', size=170, delay=0.4))
+      Big('?', 975, RY - 100, at='不确定性的道路', size=170, delay=0.4),
+      Photo('stormysea', X, 740, 960, 360, at='和我们踏上', cap='风 暴 中 的 船', pos='45% 70%'))   # [朋友反馈 2026-10-05 更多真实照片]
 
 # 3. the boat: the tide of the revolution, 不确定性的船, hold the sail tight ----------------------------------- 18 s
 BX, BY, BS = 290, 300, 500                       # boat icon box; icon point (u, v) -> (BX + 5u, OY7 + 5v)
@@ -59,7 +60,12 @@ def g4_fill7(x, y, w, h, poly, at, delay=0.0):
             'css': {'width': f'{w}px', 'height': f'{h}px', 'background': '#f1d9d3', 'clipPath': f'polygon({poly})'}}
 
 
+# [朋友反馈 2026-10-05 新闻截图] 「AI 盛行的时代」先单独一场：国务院「人工智能+」行动的报道；船从「这一场伟大的革命」开始
 scene('在这个21世纪AI盛行的时代',
+      K('2 1 世 纪 · A I 盛 行 的 时 代', y=200),
+      News('aiplus', X, 270, 960, src='新华网 · 2025.08.26'))
+
+scene('这一场伟大的革命',
       P('21 世纪 · AI 盛行的时代', X, 180, size=38),
       Ic('boat', BX, BY, size=BS, sw=1.8, dur=2.4, delay=0.3),
       HL(140, BY + 412, 800, at='伟大的革命', color='light', thick=3),

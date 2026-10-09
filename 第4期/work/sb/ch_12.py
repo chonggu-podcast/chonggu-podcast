@@ -32,7 +32,8 @@ scene('当时老师用很自信的语气说',
       Lab('教授', X + 125, 580, size=30, align='center', css=GRAY2),
       Lab('世 界 排 名', 400, 350, at='世界排名', css={'color': 'var(--gray2)', 'fontSize': '30px'}),
       Count(20, 400, 395, at='世界排名前20', prefix='前 ', size=210, dur=1.5, **{'from': 100}),
-      P('——我听到的时候，有一点绷不住', X, 690, at='绷不住', size=38, css=GRAY2))
+      P('——我听到的时候，有一点绷不住', X, 690, at='绷不住', size=38, css=GRAY2),
+      News('unsw', 560, 760, 460, at='世界排名前20+0.6', src='UNSW新闻 · 2026.06.18'))   # [朋友反馈 2026-10-05 新闻截图]
 
 # 12c  the ranking is a ruler; the question in my heart is off its scale
 scene('不是老师说的不对',
@@ -77,5 +78,10 @@ scene('于是在去年11月份的时候',
         css={'color': 'var(--ink)', 'fontWeight': 900, 'fontFamily': 'var(--serif)'}),
       P('成绩 · 排名', _CX + 270, 744, at='所谓的成绩', size=36, align='center', css=GRAY2),
       Count(50, _CX + 270, 808, at='未来50年', prefix='未来 ', suffix=' 年 · 照旧', size=44, color='ink', dur=1.6,
-            align='center'),
-      P('「考上公务员，就高枕无忧」', _CX, 930, at='考上公务员', size=40, align='center'))
+            align='center'))
+
+# [朋友反馈 2026-10-05 更多真实照片] 「考上公务员就高枕无忧」单独一场：清末广州贡院的号舍
+scene('就像是你考上公务员之后',
+      P('「考上公务员，就高枕无忧」', X, 180, at='考上公务员', size=48, css={'fontFamily': 'var(--serif)', 'fontWeight': '900'}),
+      Photo('examcells', X, 260, 960, 380, cap='清 末 · 广 州 贡 院 的 7 5 0 0 间 号 舍', pos='50% 55%', zoom=0.05),
+      News('guokao', 160, 740, 760, at='考上公务员+0.8', src='央视网 · 2025.10.26'))   # [朋友反馈 2026-10-05 新闻截图]

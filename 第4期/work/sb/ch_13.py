@@ -30,7 +30,8 @@ scene('所以我开始涉足资本市场',
           css={'justifyContent': 'flex-start', 'paddingTop': '36px'}),
       *[Ic('star', 600 + i * 80, 420, size=66, at='外部评价就是', delay=0.18 * i, color='red', sw=5) for i in range(5)],
       Stamp('学校盖章', X + 70, 440, at='学校盖章', size=58, rot=-8),
-      P('结果 · 别人来打分', 600, 540, at='靠结果', size=34))
+      P('结果 · 别人来打分', 600, 540, at='靠结果', size=34),
+      Photo('sse', X, 700, 960, 360, at='涉足资本市场', cap='上 海 证 券 交 易 所', pos='50% 30%'))   # [朋友反馈 2026-10-05 更多真实照片]
 
 # 13c  tested by time: a judgement (hollow dot) -- some time -- a result (red dot). A plain line, not the ruler.
 _TY = 720            # timeline y

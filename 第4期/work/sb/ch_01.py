@@ -51,10 +51,12 @@ scene('那么在第二轮的时候',
       Count(180, 440, 186, at='180', suffix='°', size=210, dur=1.4),
       P('领导关心的事情', 60, 380, at='领导他关心的事情', size=40),
       HL(60, 470, 960, at='是什么呢', color='light'),
-      Hd('清华北大\n北上广交', 60, 520, at='清华北大', size=110),
-      {'kind': 'strike', 'x': 44, 'y': 584, 'w': 480, 'at': '$北上广交+0.15', 'rot': -2},
-      {'kind': 'strike', 'x': 44, 'y': 716, 'w': 480, 'at': '$北上广交+0.4', 'rot': -2},
-      P("I don't care.", 600, 620, at='care', size=60, color='gray',
+      # [朋友反馈 2026-10-05 真实照片] 两所校门的照片代替「清华北大 / 北上广交」大字，照样被划掉
+      Photo('tsinghua', 60, 510, 465, 310, at='清华北大', cap='清 华', pos='50% 40%'),
+      Photo('pku', 555, 510, 465, 310, at='清华北大+0.35', cap='北 大', pos='50% 55%'),
+      {'kind': 'strike', 'x': 40, 'y': 660, 'w': 505, 'at': '$北上广交+0.15', 'rot': -3},
+      {'kind': 'strike', 'x': 535, 'y': 660, 'w': 505, 'at': '$北上广交+0.4', 'rot': -3},
+      P("I don't care.", 60, 940, at='care', size=60, color='gray',
         css={'fontFamily': 'var(--serif)', 'fontStyle': 'italic', 'fontWeight': '900'}))
 
 # 5. what they care about: the key (知识, 项目) must fit the lock (岗位)

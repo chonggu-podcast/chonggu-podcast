@@ -13,7 +13,8 @@ scene('先从头说起',
       HL(X, 344, 840, at='在国内上的', color='red', thick=4),
       {'kind': 'vline', 'x': X + 2, 'y': 344, 'h': 34, 'color': 'red', 'thick': 4, 'at': '在国内上的', 'dur': 0.3},
       {'kind': 'vline', 'x': X + 838, 'y': 344, 'h': 34, 'color': 'red', 'thick': 4, 'at': '在国内上的+0.4', 'dur': 0.3},
-      Lab('国内', X + 420, 252, at='国内上的', align='center', css=SERIF(68)))
+      Lab('国内', X + 420, 252, at='国内上的', align='center', css=SERIF(68)),
+      Photo('classroom', X, 620, CW, 430, at='在国内上的+0.5', cap='国 内 的 教 室', pos='75% 45%'))   # [朋友反馈 2026-10-05 真实照片]
 
 # 2. 学历至上, and what it bought: 学习好 -> 老师照顾 -> 更好的未来
 scene('就学历至上',

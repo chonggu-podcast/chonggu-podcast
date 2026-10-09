@@ -1,0 +1,74 @@
+{
+ "bosch": {
+  "outlet": "界面新闻",
+  "date": "2023-01-13",
+  "headline": "博世在苏州投资10亿美元，建立新能源汽车核心部件及自动驾驶研发制造基地",
+  "url": "https://www.jiemian.com/article/8749120.html"
+ },
+ "gaokao": {
+  "outlet": "新华网",
+  "date": "2026-06-03",
+  "headline": "2026年全国高考报名人数为1290万人",
+  "url": "https://education.news.cn/20260603/d052b9194ea5400aad4bf1ecbfa5bda6/c.html"
+ },
+ "soe": {
+  "outlet": "新京报",
+  "date": "2024-05-10",
+  "headline": "智联招聘：51%毕业生看重工作稳定性，同比提高10个百分点",
+  "url": "https://m.bjnews.com.cn/detail/1715348482168311.html"
+ },
+ "grads": {
+  "outlet": "新华网",
+  "date": "2025-11-20",
+  "headline": "2026届全国普通高校毕业生规模预计1270万人",
+  "url": "https://education.news.cn/20251120/0b6555b37e694cbcb00208581b5141f6/c.html"
+ },
+ "a16z": {
+  "outlet": "TechCrunch",
+  "date": "2026-09-22",
+  "headline": "a16z is challenging Silicon Valley’s love for drop-outs by launching a school",
+  "url": "https://techcrunch.com/2026/09/22/a16z-is-challenging-silicon-valleys-love-for-drop-outs-by-launching-a-school/"
+ },
+ "aiplus": {
+  "outlet": "新华网",
+  "date": "2025-08-26",
+  "headline": "国务院印发《关于深入实施“人工智能+”行动的意见》",
+  "url": "https://www.news.cn/politics/20250826/21f5785636b14373af2e5d85ef383344/c.html"
+ },
+ "unsw": {
+  "outlet": "UNSW Newsroom",
+  "date": "2026-06-18",
+  "headline": "UNSW claims Australia’s top spot for the first time in preeminent world university rankings",
+  "url": "https://www.unsw.edu.au/newsroom/news/2026/06/unsw-claims-australias-top-spot-for-the-first-time-in-preeminent-world-university-rankings"
+ },
+ "codex": {
+  "outlet": "TechCrunch",
+  "date": "2025-05-16",
+  "headline": "OpenAI launches Codex, an AI coding agent, in ChatGPT",
+  "url": "https://techcrunch.com/2025/05/16/openai-launches-codex-an-ai-coding-agent-in-chatgpt/"
+ },
+ "claudecode": {
+  "outlet": "TechCrunch",
+  "date": "2025-10-20",
+  "headline": "Anthropic brings Claude Code to the web",
+  "url": "https://techcrunch.com/2025/10/20/anthropic-brings-claude-code-to-the-web/"
+ },
+ "stanford": {
+  "outlet": "Stanford SIEPR",
+  "date": "2025",
+  "headline": "Canaries in the Coal Mine? Six Facts about the Recent Employment Effects of Artificial Intelligence",
+  "url": "https://siepr.stanford.edu/publications/working-paper/canaries-coal-mine-six-facts-about-recent-employment-effects-artificial"
+ },
+ "abc": {
+  "outlet": "ABC News（澳大利亚）",
+  "date": "2025-10-20",
+  "headline": "Over a dozen unis are using AI to catch AI — and getting it wrong",
+  "url": "https://www.abc.net.au/news/2025-10-20/universities-using-ai-to-detect-students-cheating/105905804"
+ },
+ "guokao": {
+  "outlet": "央视网",
+  "date": "2025-10-26",
+  "headline": "371.8万人通过2026年国家公务员考试资格审查",
+  "url": "https://news.cctv.cn/2025/10/26/ARTIRHkodHV9xXqVtoRN3ThW251026.shtml"
+ }
+}

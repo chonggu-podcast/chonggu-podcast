@@ -1037,7 +1037,8 @@
       subEl.style.opacity = fin
       subName.style.opacity = fin
       L.chars.forEach((c, i) => {
-        const p = prog(t, c.t0, 0.09)
+        // [2026-10-05 朋友反馈「弹幕」] the line now appears whole (no word-by-word gray → ink); SUB_KARAOKE brings it back
+        const p = SUB_KARAOKE ? prog(t, c.t0, 0.09) : 1
         const hot = c.hl ? RED : INK
         subSpans[i].style.color = mixRGB(GRAY, hot, p)
       })
@@ -1072,22 +1073,46 @@
     window.__scenes = scenes.map((s) => ({ idx: s.idx, t0: s.t0, t1: s.t1, dy: s.dy }))
   }
 
+  const SUB_KARAOKE = false
   const eIOs2 = (x) => -(Math.cos(Math.PI * clamp(x)) - 1) / 2
+  const eIn3 = (x) => Math.pow(clamp(x), 3)
+  // [2026-10-05 朋友反馈「画面的过渡有问题」] Scene handoff.
+  // Before: the old scene dissolved over the new one's first 0.35 s, but the new scene's elements only fade up at their
+  // anchors (up to ~1 s later), so every change read as old → blank paper → new, 96 times.
+  // Now the old scene holds until the new scene's first element is about to appear, then lifts away in 0.32 s while
+  // that element rises in: no blank page and only a brief overlap. At a chapter change the page turns sideways instead
+  // (the mix puts a soft page-turn sound there).
+  scenes.forEach((s, i) => {
+    const as = s.items.map((it) => it.a).filter((a) => isFinite(a) && a >= s.t0 - 0.5)
+    s.first = Math.max(s.t0, Math.min(as.length ? Math.min(...as) : s.t0, s.t0 + 1.2))
+    s.chIn = i > 0 && scenes[i - 1].S.ch !== s.S.ch
+  })
+  scenes.forEach((s, i) => {
+    const n = scenes[i + 1]
+    s.inAt = s.chIn ? s.first - 0.35 : s.first - 0.12        // container shows; its elements fade up on their own
+    s.inDur = s.chIn ? 0.6 : 0.3
+    s.outAt = n ? (n.chIn ? n.first - 0.4 : n.first - 0.2) : s.t1 - 0.3
+    s.outDur = n && n.chIn ? 0.5 : 0.32
+    s.chOut = !!(n && n.chIn)
+  })
+  window.__handoffs = scenes.map((s) => ({ idx: s.idx, ch: s.S.ch, first: s.first, chIn: s.chIn }))
   function drawScenes(t) {
     if (!centred) centreScenes()
     for (const s of scenes) {
-      const fin = prog(t, s.t0 - 0.05, 0.4)
-      const fout = s.S.hold ? 0 : prog(t, s.t1 - 0.3, 0.35)
-      const vis = t >= s.t0 - 0.1 && t <= s.t1 + 0.1
+      const fin = s.idx === 0 ? prog(t, s.t0 - 0.05, 0.4) : prog(t, s.inAt, s.inDur)   // scene 0: the intro's handoff timing, as before
+      const fout = s.S.hold ? 0 : prog(t, s.outAt, s.outDur)
+      const vis = t >= Math.min(s.t0, s.inAt) - 0.05 && (s.S.hold ? t <= s.t1 + 0.1 : t <= s.outAt + s.outDur + 0.02)
       if (!vis) { if (s.el.style.display !== 'none') s.el.style.display = 'none'; continue }
       s.el.style.display = 'block'
-      s.el.style.opacity = Math.min(fin, 1 - fout)
+      s.el.style.opacity = (eOut(fin) * (1 - eIn3(fout))).toFixed(3)
       if (s.S.cam !== false) {
         const u = clamp((t - s.t0) / Math.max(1, s.t1 - s.t0))
         const z = s.S.cam === 'out' ? lerp(1.035, 1, eIOs2(u)) : lerp(1, s.S.zoom || 1.03, eIOs2(u))
-        const enter = 1 - eOut5(prog(t, s.t0 - 0.05, 0.6))
+        const enter = 1 - eOut5(fin), exit = eIn3(fout)
+        const dx = (s.chIn ? enter * 160 : 0) - (s.chOut ? exit * 160 : 0)
+        const dy = (s.chIn ? 0 : enter * 18) - (s.chOut ? 0 : exit * 34)
         s.el.style.transformOrigin = `540px ${650 - (s.dy || 0)}px`
-        s.el.style.transform = `translateY(${enter * 18}px) scale(${z.toFixed(4)})`
+        s.el.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px) scale(${z.toFixed(4)})`
       }
       for (const it of s.items) it.upd(t, it.a)
     }

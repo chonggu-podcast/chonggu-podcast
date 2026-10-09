@@ -67,13 +67,18 @@ scene('那么如果一个年轻人',
       Lab('出 发', 400, 585, at='出发', size=30, color='red'))
 
 # ---------------------------------------------------------------- 2a  一封邀请
+# [朋友反馈 2026-10-05 新闻截图] a16z 单独一场：TechCrunch 报道 a16z 新办的学院（Horowitz Andreessen Academy），再接下面的邀请信
 scene('不知道最近同学们',
+      K('a 1 6 z', y=190),
+      News('a16z', X, 250, 960, src='TechCrunch · 2026.09.22'),
+      Lab('a16z 新办的学院：面向高中毕业生和大学退学生', X, 960, at='投资风投公司', size=36, color='gray'))
+
+scene('他们发送的一个学校的邀请',
       K('一 封 邀 请', x=120, y=190),
       Box('', 120, 390, 840, 460),
-      Seg(120, 391, 540, 670, at='不知道最近同学们+0.5', thick=2),
-      Seg(960, 391, 540, 670, at='不知道最近同学们+0.7', thick=2),
-      Hd('a16z', x=116, y=236, size=104, at='a16z', css={'fontFamily': 'var(--sans)', 'fontWeight': '700', 'letterSpacing': '0'}),
-      Lab('投资风投公司', 400, 296, at='投资风投公司', size=34, color='gray'),
+      Seg(120, 391, 540, 670, delay=0.3, thick=2),
+      Seg(960, 391, 540, 670, delay=0.5, thick=2),
+      Hd('a16z', x=116, y=236, size=104, css={'fontFamily': 'var(--sans)', 'fontWeight': '700', 'letterSpacing': '0'}),
       Seal('邀请', 540, 670, 60, at='学校的邀请'),
       SL('致 东政', 720, 770, at='有发邀请给我', size=40),
       Lab('因为', 120, 920, at='因为我确实', size=36, color='gray'),
@@ -147,14 +152,15 @@ scene('不是告诉你',
 # ---------------------------------------------------------------- 6b  也拿过、也进过 —— 对我而言，不重要
 scene('我在美国什么',
       K('也 拿 过 · 也 进 过', y=190),
-      Chip('scholarship', 90, 270, 380, -4, at='scholarship'),
-      Chip('UCSD', 580, 250, 230, 5, at='UCSD'),
-      Chip('UCSB', 660, 420, 230, -3, at='UCSB'),
-      Chip('NYU', 200, 430, 200, 4, at='NYU'),
-      Chip('同济 · 交换', 330, 590, 380, -2, at='同济大学'),
-      SL('对于我而言，', 540, 770, at='对于我而言', size=40, color='gray', align='center'),
-      Veil(60, 230, 960, 500, at='这些都不重要'),
-      Stamp('不重要', 540, 380, at='都不重要', size=110, rot=-8, align='center'))
+      # [朋友反馈 2026-10-05 更多真实照片] 四所学校的照片代替原来的四张贴纸
+      Chip('scholarship', 600, 170, 380, -4, at='scholarship'),
+      Photo('ucsd', X, 300, 465, 260, at='UCSD', cap='U C S D', pos='50% 55%'),
+      Photo('ucsb', 555, 300, 465, 260, at='UCSB', cap='U C S B', pos='50% 50%'),
+      Photo('nyu', X, 660, 465, 260, at='NYU', cap='N Y U', pos='50% 35%'),
+      Photo('tongji', 555, 660, 465, 260, at='同济大学', cap='同 济 · 交 换', pos='50% 60%'),
+      SL('对于我而言，', 540, 1030, at='对于我而言', size=40, color='gray', align='center'),
+      Veil(40, 280, 1000, 720, at='这些都不重要'),
+      Stamp('不重要', 540, 560, at='都不重要', size=130, rot=-8, align='center'))
 
 # ---------------------------------------------------------------- 7  最重要的：不断去做 —— 做、做、做、做，一次比一次重
 DO = [(155, 110, '#d3cdc3'), (325, 150, '#aaa49a'), (540, 200, '#1b1915'), (820, 280, '#c4342c')]   # centre x, size, ink
