@@ -1,0 +1,97 @@
+{
+ "voice": "zh-CN-YunxiNeural",
+ "rate": "+10%",
+ "gap": 0.28,
+ "lines": [
+  {
+   "id": "hook1",
+   "scene": "hook",
+   "text": "他一辈子没下过一次坡，停在了 696 米。"
+  },
+  {
+   "id": "hook2",
+   "scene": "hook",
+   "text": "同一个起点，另一个人站上了 1000 米。"
+  },
+  {
+   "id": "hook3",
+   "scene": "dip",
+   "text": "他过不去的，只是一道 121 米深的沟。"
+  },
+  {
+   "id": "rewind",
+   "scene": "rewind",
+   "text": "倒回 18 岁。",
+   "gap": 0.2
+  },
+  {
+   "id": "three",
+   "scene": "three",
+   "text": "三个人，同一个起点：求稳的，先闯后收的，一直折腾的。"
+  },
+  {
+   "id": "rule",
+   "scene": "rule",
+   "text": "上坡随便走；碰到下坡，看你敢不敢。"
+  },
+  {
+   "id": "lamps",
+   "scene": "lamps",
+   "text": "先闯后收：50 米的下坡，18 岁有 85% 会走，35 岁以后一步不走。一直折腾：一辈子 85%。",
+   "gap": 0.4
+  },
+  {
+   "id": "fall",
+   "scene": "sim",
+   "text": "19 岁，先闯的人跌进 58 米的谷底。",
+   "gap": 0.12
+  },
+  {
+   "id": "redtop",
+   "scene": "sim",
+   "text": "20 岁，一直折腾的最先登顶，",
+   "gap": 0.12
+  },
+  {
+   "id": "redoff",
+   "scene": "sim",
+   "text": "可不到 24 岁，他又自己走了下来。",
+   "gap": 0.12
+  },
+  {
+   "id": "goldtop",
+   "scene": "sim",
+   "text": "先闯后收的，25 岁登顶，再没离开。",
+   "gap": 0.9
+  },
+  {
+   "id": "crowd",
+   "scene": "crowd",
+   "text": "每种走法 4000 人，换 12 座山。",
+   "gap": 0.9
+  },
+  {
+   "id": "rates",
+   "scene": "grid",
+   "text": "登顶率：求稳 3.9%，先闯后收 46.7%，一直折腾 12.1%。",
+   "gap": 0.6
+  },
+  {
+   "id": "name",
+   "scene": "temp",
+   "text": "先热后冷，这叫模拟退火。",
+   "gap": 0.5
+  },
+  {
+   "id": "moral",
+   "scene": "path",
+   "text": "早年跌过的谷底，不白跌。",
+   "gap": 0.45
+  },
+  {
+   "id": "ask",
+   "scene": "ending",
+   "text": "你现在的温度，降到多少了？"
+  }
+ ]
+}

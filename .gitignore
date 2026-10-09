@@ -3,3 +3,7 @@
 pipeline/work/
 pipeline/out/
 .DS_Store
+敢不敢走下坡/out/
+敢不敢走下坡/node_modules/
+敢不敢走下坡/audio/final.wav
+__pycache__/
