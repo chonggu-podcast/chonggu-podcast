@@ -1,6 +1,6 @@
 """Cut the reference clips listed in voice/*.json out of the episode-4 recording.
 
-The real voices are not in the repo (it is public); each clip's place in the recording is (`src`, seconds).
+The clips are already in voice/; run this only after changing a clip's `src` (its place in the recording, seconds).
 
     python3 cut_refs.py ../work/src48.wav        # src48.wav = the episode recording, 48 kHz mono
 -> voice/原同/*.wav, voice/顾东政/*.wav (24 kHz mono, what F5-TTS wants)
