@@ -1,0 +1,8 @@
+# Python 3.12, Apple silicon (tested on an M4 MacBook Air, 2026-10)
+f5-tts==1.1.22
+mlx-whisper==0.4.3
+pypinyin==0.55.0
+librosa==1.0.0
+soundfile==0.14.0
+resemblyzer==0.1.4
+setuptools<81

@@ -1,0 +1,6 @@
+# real voices never go in the repo (it is public): cut them back with cut_refs.py
+voice/**/*.wav
+audio/
+data/
+.venv-tts/
+__pycache__/
